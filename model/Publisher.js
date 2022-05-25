@@ -10,6 +10,11 @@ const PublisherSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    book: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Book'
+
+    }
     
     
 }, {timestamps: true})

@@ -7,7 +7,7 @@ const {
     getSinglePublisher,
     updatePublisher,
     deletePublisher
-} = require('../controllers/publishController')
+} = require('../controllers/publisherController')
 
 
 router.post('/', createPublisher)

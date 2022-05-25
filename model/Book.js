@@ -4,7 +4,7 @@ const BookSchema = new mongoose.Schema({
     ISBN: {
         type: String,
         required: true,
-        unique: true
+        
     },
     title: {
         type: String,
@@ -12,7 +12,9 @@ const BookSchema = new mongoose.Schema({
     },
     price: {
         type:Number,
-        required: true
+        required: true,
+        get: v => Math.round(v),
+        set: v => Math.round(v)
     },
     noOfPages: {
         type: Number,
@@ -24,8 +26,21 @@ const BookSchema = new mongoose.Schema({
     category: {
         type: String,
         enum:['Science Fiction', 'Fantasy', 'Detective and Mystery','Comic', 'Horror'],
-        default: 'Fantasy'
+        default: 'Fantasy',
+       
     },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Author'
+
+    },
+    publisher: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Publisher'
+
+    }
+
+    
     
 }, {timestamps: true})
 

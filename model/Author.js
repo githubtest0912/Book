@@ -6,6 +6,11 @@ const AuthorSchema = new mongoose.Schema({
         required: true,
         
     },
+    book: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Book'
+
+    }
     
     
 }, {timestamps: true})

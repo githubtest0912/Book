@@ -16,7 +16,7 @@ const createPublisher =async (req,res) => {
 
 const getAllPublishers = async(req,res) => {
     try {
-        const publishers = await Publisher.find({})
+        const publishers = await Publisher.find({}).populate('book')
         return res.status(200).json({publishers})
 
     }catch(err){

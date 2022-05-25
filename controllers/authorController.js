@@ -16,7 +16,7 @@ const createAuthor =async (req,res) => {
 
 const getAllAuthors = async(req,res) => {
     try {
-        const authors = await Author.find({})
+        const authors = await Author.find({}).populate('book')
         return res.status(200).json({authors})
 
     }catch(err){

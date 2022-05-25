@@ -1,12 +1,13 @@
 const Book = require('../model/Book')
-
-
+const Author = require('../model/Author')
+const Publisher = require('../model/Publisher')
 
 const createBook =async (req,res) => {
-    const {  ISBN, title, price, noOfPages, description, category} = req.body;
+    const {  authorId, publisherId, ISBN, title, price, noOfPages, description, category} = req.body;
     try {
-       
-        const book = await Book.create({ ISBN, title, price, noOfPages, description, category})
+        const author = await Author.findById(authorId)
+        const publisher = await Publisher.findById(publisherId)
+        const book = await Book.create({author:author.Id, publisher:publisher.Id, ISBN, title, price, noOfPages, description, category})
         return res.status(201).json({book})
 
     }catch(err){
@@ -17,8 +18,8 @@ const createBook =async (req,res) => {
 
 const getAllBooks = async(req,res) => {
     try {
-        const books = await Book.find({})
-        
+        const books = await Book.find({}).populate('author').populate('publisher')
+           
         return res.status(200).json({books})
 
     }catch(err){
